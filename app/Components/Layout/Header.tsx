@@ -1,11 +1,26 @@
 "use client";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 export default function Header() {
+  const openSidebar = () => {
+    window.dispatchEvent(new Event("snaap:open-sidebar"));
+  };
+
   return (
     <header className="sticky top-0 z-[1200] border-[#e7e8ed] bg-white rounded-2xl px-4 py-4 backdrop-blur-sm sm:px-2 mt-2">
       <div className="flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={openSidebar}
+          className="grid h-10 w-10 place-items-center rounded-xl border border-[#d8dce6] bg-white text-[#4b5563] md:hidden"
+          aria-label="Open sidebar"
+          aria-controls="mobile-sidebar"
+        >
+          <MenuRoundedIcon />
+        </button>
+
         <label className="relative w-full max-w-2xl flex items-center gap-2">
           <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]">
             <SearchIcon />

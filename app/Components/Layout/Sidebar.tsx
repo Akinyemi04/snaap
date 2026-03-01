@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import type { SvgIconComponent } from "@mui/icons-material";
@@ -45,7 +45,7 @@ function SidebarContent({
   onClose?: () => void;
 }) {
   return (
-    <>
+    <div className="flex h-full min-h-0 flex-col">
       <div className="flex items-center justify-between px-3">
         <h1 className="text-3xl font-semibold tracking-tight text-[#111827]">
           Snaarp
@@ -62,52 +62,56 @@ function SidebarContent({
         ) : null}
       </div>
 
-      <nav className="mt-7 flex flex-col gap-1 text-sm text-[#6b7280]">
-        {mainItems.map(({ label, icon: Icon }) => (
-          <button
-            key={label}
-            type="button"
-            onClick={onItemClick}
-            className={`flex items-center gap-2 rounded-xl px-3 py-2 text-left transition ${
-              label === "Dashboard"
-                ? "bg-[#eef2ff] font-semibold text-[#4c6fff]"
-                : "hover:bg-[#f7f8fc]"
-            }`}
-          >
-            <Icon fontSize="small" />
-            <span>{label}</span>
-          </button>
-        ))}
-      </nav>
-
-      <div className="my-5 h-px bg-[#eceef4]" />
-
-      <nav className="flex flex-col gap-1 text-sm text-[#6b7280]">
-        {supportItems.map(({ label, icon: Icon }) => (
-          <button
-            key={label}
-            type="button"
-            onClick={onItemClick}
-            className="flex items-center gap-2 rounded-xl px-3 py-2 text-left transition hover:bg-[#f7f8fc]"
-          >
-            <Icon fontSize="small" />
-            <span>{label}</span>
-          </button>
-        ))}
-      </nav>
-
-      <div className="mt-auto flex items-center gap-2 rounded-2xl border border-[#e7e8ed] bg-[#f8f9fd] p-3">
-        <img
-          src="https://randomuser.me/api/portraits/women/44.jpg"
-          className="h-[30px] w-[30px] rounded-full object-cover"
-          alt=""
-        />
-        <aside>
-          <p className="text-sm font-semibold text-[#1f2937]">Chioma Snaarp</p>
-          <p className="text-xs text-[#6b7280]">chioma@snaarp.com</p>
-        </aside>
+      <div className="no-scrollbar mt-7 min-h-0 flex-1 overflow-y-auto pr-1">
+        <nav className="flex flex-col gap-1 text-sm text-[#6b7280]">
+          {mainItems.map(({ label, icon: Icon }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={onItemClick}
+              className={`flex items-center gap-2 rounded-xl px-3 py-2 text-left transition ${
+                label === "Dashboard"
+                  ? "bg-[#eef2ff] font-semibold text-[#4c6fff]"
+                  : "hover:bg-[#f7f8fc]"
+              }`}
+            >
+              <Icon fontSize="small" />
+              <span>{label}</span>
+            </button>
+          ))}
+        </nav>
       </div>
-    </>
+
+      <div className="mt-3  border-[#e7e8ed] pt-3">
+        <nav className="flex flex-col gap-1 pb-2 text-sm text-[#6b7280]">
+          {supportItems.map(({ label, icon: Icon }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={onItemClick}
+              className="flex items-center gap-2 rounded-xl px-3 py-2 text-left transition hover:bg-[#f7f8fc]"
+            >
+              <Icon fontSize="small" />
+              <span>{label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="mt-2 flex items-center gap-2 border-t border-[#e7e8ed] p-3">
+          <img
+            src="https://randomuser.me/api/portraits/women/44.jpg"
+            className="h-[30px] w-[30px] rounded-full object-cover"
+            alt=""
+          />
+          <aside>
+            <p className="text-sm font-semibold text-[#1f2937]">
+              Chioma Snaarp
+            </p>
+            <p className="text-xs text-[#6b7280]">chioma@snaarp.com</p>
+          </aside>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -123,8 +127,8 @@ export default function Sidebar() {
   const closeSidebar = () => setIsMobileOpen(false);
 
   return (
-    <>
-      <aside className="hidden h-screen w-[260px] shrink-0 flex-col border-r border-[#e7e8ed] bg-white p-4 md:flex">
+    <div className="bg-[#f8f9fd] lg:h-screen lg:p-3">
+      <aside className="hidden w-[260px] shrink-0 flex-col border-r border-[#e7e8ed] bg-white md:flex md:h-screen md:overflow-hidden lg:h-full">
         <SidebarContent />
       </aside>
 
@@ -147,6 +151,6 @@ export default function Sidebar() {
       >
         <SidebarContent onItemClick={closeSidebar} onClose={closeSidebar} />
       </aside>
-    </>
+    </div>
   );
 }

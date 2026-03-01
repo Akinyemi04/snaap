@@ -43,3 +43,23 @@ body {
 .small {
   @apply rounded-lg bg-gray-200 p-1;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-track {
+  display: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  display: none !important;
+}
